@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application_Phone" screenid="mobile" onload="Application_onload">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="false" showstatusbar="false" left="0" top="0" width="800" height="1280" titletext="FullFrame" showtitleicon="false">
+        <ChildFrame id="WorkFrame" showtitlebar="false" showstatusbar="false" formurl="Frame::frameLogin.xfdl"/>
+      </MainFrame>
+    </Layout>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[/**
+*  모바일 프레임 구성 
+*  @MenuPath    
+*  @FileName 	
+*  @Creator 	kmj
+*  @CreateDate 	2023.11.27
+*  @Desction         스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2023.11.27     	    kmj	 	           		최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * application 변수 선언 영역
+************************************************************************************************/
+
+
+/***********************************************************************************************
+* Application EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	this.gvWorkFrame    = objApp.mainframe.WorkFrame;					//WorkForm
+	
+	var windowUrl = window.location.href;
+	var urlPath = window.location.protocol + "//" + window.location.host;
+	var objEnv = nexacro.getEnvironment();
+	
+	// service URL 설정
+	var objSrv = objEnv.services["svcurl"];
+	
+	// 로그인 화면 open
+	this.gvWorkFrame.set_formurl("Frame::frameLogin.xfdl");
+};
+]]></Script>
+</ADL>
